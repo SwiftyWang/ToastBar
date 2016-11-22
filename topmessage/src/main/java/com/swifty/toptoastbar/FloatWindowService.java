@@ -29,6 +29,7 @@ public class FloatWindowService extends Service {
         long time = intent.getLongExtra("time", 0);
         int bgColor = intent.getIntExtra("backgroundColor", 0);
         int textColor = intent.getIntExtra("textColor", 0);
+        Toast.Position position = (Toast.Position) intent.getSerializableExtra("position");
         String message = intent.getStringExtra("message");
         WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
@@ -37,21 +38,22 @@ public class FloatWindowService extends Service {
         layoutParams.format = PixelFormat.RGBA_8888;
         layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                 | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-        layoutParams.gravity = Gravity.TOP;
+        layoutParams.gravity = position == Toast.Position.BOTTOM ? Gravity.BOTTOM : Gravity.TOP;
         layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
         layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
-        TopToast topToast = (TopToast) LayoutInflater.from(this).inflate(R.layout.view_message, null);
-        topToast.setText(message);
-        topToast.setTime(time);
-        topToast.show(delay);
+        Toast toast = (Toast) LayoutInflater.from(this).inflate(R.layout.view_message, null);
+        toast.setText(message);
+        toast.setPosition(position);
+        toast.setTime(time);
+        toast.show(delay);
         if (bgColor != 0)
-            topToast.setBackground(bgColor);
+            toast.setBackground(bgColor);
         if (textColor != 0)
-            topToast.setTextColor(textColor);
+            toast.setTextColor(textColor);
         FrameLayout frameLayout = new FrameLayout(this);
         frameLayout.setTag("service_parent");
-        frameLayout.addView(topToast);
+        frameLayout.addView(toast);
         frameLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         windowManager.addView(frameLayout, layoutParams);
         stopSelf();

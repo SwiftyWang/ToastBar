@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.swifty.toptoastbar.TopToast android:id="@+id/message_view"
+<com.swifty.toptoastbar.Toast android:id="@+id/message_view"
                                  xmlns:android="http://schemas.android.com/apk/res/android"
                                  android:layout_width="match_parent"
                                  android:layout_height="wrap_content"
@@ -16,4 +16,4 @@
         android:minHeight="45dp"
         android:padding="5dp"
         android:textColor="@android:color/white"/>
-</com.swifty.toptoastbar.TopToast>
+</com.swifty.toptoastbar.Toast>

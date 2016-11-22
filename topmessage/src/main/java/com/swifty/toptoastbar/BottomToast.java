@@ -4,14 +4,14 @@ import android.content.Context;
 import android.view.ViewGroup;
 
 /**
- * Created by Swifty on 2016/2/6.
+ * Created by swifty on 22/11/2016.
  */
-public class TopToast extends Toast {
 
-    private TopToast(Context context) {
+public class BottomToast extends Toast {
+
+    private BottomToast(Context context) {
         super(context);
     }
-
 
     /**
      * show the toast in the app views.
@@ -23,7 +23,7 @@ public class TopToast extends Toast {
      * @return
      */
     protected static Toast make(ViewGroup viewGroup, Context context, String message, long time) {
-        return make(Position.TOP, viewGroup, context, message, time);
+        return make(Position.BOTTOM, viewGroup, context, message, time);
     }
 
     /**
@@ -35,6 +35,6 @@ public class TopToast extends Toast {
      * @return
      */
     protected static Toast make(Context context, String message, long time) {
-        return make(Position.TOP, null, context, message, time);
+        return make(Position.BOTTOM, null, context, message, time);
     }
 }
