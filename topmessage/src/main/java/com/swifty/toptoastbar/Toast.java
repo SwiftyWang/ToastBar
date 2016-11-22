@@ -139,9 +139,12 @@ public class Toast extends FrameLayout {
                             @Override
                             public void onAnimationEnd(Animator animation) {
                                 super.onAnimationEnd(animation);
-                                Toast.this.setVisibility(GONE);
-                                if (Toast.this.getParent() instanceof View && "service_parent".equals(((View) Toast.this.getParent()).getTag())) {
+                                if (Toast.this.getParent() instanceof View
+                                        && "service_parent".equals(((View) Toast.this.getParent()).getTag())) {
                                     ((View) Toast.this.getParent()).setVisibility(GONE);
+                                }
+                                if (Toast.this.getParent() instanceof ViewGroup) {
+                                    ((ViewGroup) Toast.this.getParent()).removeView(Toast.this);
                                 }
                             }
                         }).start();
