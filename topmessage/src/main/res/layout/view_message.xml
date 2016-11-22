@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.swifty.toptoastbar.TopToast xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/message_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/holo_green_dark"
-    android:elevation="5dp"
-    android:orientation="vertical">
+<com.swifty.toptoastbar.TopToast android:id="@+id/message_view"
+                                 xmlns:android="http://schemas.android.com/apk/res/android"
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:background="@color/background_color"
+                                 android:elevation="5dp"
+                                 android:orientation="vertical">
 
     <TextView
         android:id="@+id/message_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:minHeight="45dp"
-        android:singleLine="true"
-        android:textColor="@android:color/black"
-        android:text="Hello World!"/>
+        android:padding="5dp"
+        android:textColor="@android:color/white"/>
 </com.swifty.toptoastbar.TopToast>

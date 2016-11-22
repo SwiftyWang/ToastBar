@@ -3,9 +3,8 @@
 
     <application
         android:allowBackup="true"
-        android:label="@string/app_name"
         android:supportsRtl="true">
-
+        <service android:name="com.swifty.toptoastbar.FloatWindowService" />
     </application>
 
 </manifest>

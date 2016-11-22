@@ -5,6 +5,8 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
+import android.text.Spanned;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +14,11 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.swifty.topstatusbar.R;
-
-import java.io.Serializable;
+import com.swifty.toptoastbar.UrlImage.URLImageParser;
 
 /**
  * Created by Swifty on 2016/2/6.
@@ -27,8 +26,13 @@ import java.io.Serializable;
 public class TopToast extends FrameLayout {
     private static Intent intent;
     TextView message;
+    //show time
     public static final long DEFAULTTIME = 300;
+    //dropdown duration
     public static final long DEFAULTDERATION = 1000;
+    public static final int LENGTH_SHORT = 3000;
+    public static final int LENGTH_LONG = 5000;
+    //-1 means dont dismiss, only worked in the viewgroup
     long time;
     private Interpolator interpolator;
 
@@ -51,13 +55,16 @@ public class TopToast extends FrameLayout {
     }
 
     public void setText(String msg) {
-        if (message != null) {
-            message.setText(Html.fromHtml(msg));
+        if (message != null && !TextUtils.isEmpty(msg)) {
+            URLImageParser p = new URLImageParser(message, getContext());
+            Spanned htmlSpan = Html.fromHtml(msg, p, null);
+            message.setText(htmlSpan);
         }
     }
 
     public void setTime(long time) {
-        this.time = time;
+        if (time != 0)
+            this.time = time;
     }
 
     public void show() {
@@ -74,6 +81,7 @@ public class TopToast extends FrameLayout {
             post(new Runnable() {
                 @Override
                 public void run() {
+                    TopToast.this.setVisibility(VISIBLE);
                     TopToast.this.setY(-getHeight());
                 }
             });
@@ -92,21 +100,23 @@ public class TopToast extends FrameLayout {
                     }).start();
                 }
             }, delay);
-            postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    TopToast.this.animate().translationY(-getHeight()).setDuration(DEFAULTDERATION).setInterpolator(interpolator == null ? new AccelerateInterpolator() : interpolator).setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            super.onAnimationEnd(animation);
-                            TopToast.this.setVisibility(GONE);
-                            if (TopToast.this.getParent() instanceof View && "service_parent".equals(((View) TopToast.this.getParent()).getTag())) {
-                                ((View) TopToast.this.getParent()).setVisibility(GONE);
+            if (time != -1) {
+                postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        TopToast.this.animate().translationY(-getHeight()).setDuration(DEFAULTDERATION).setInterpolator(interpolator == null ? new AccelerateInterpolator() : interpolator).setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                TopToast.this.setVisibility(GONE);
+                                if (TopToast.this.getParent() instanceof View && "service_parent".equals(((View) TopToast.this.getParent()).getTag())) {
+                                    ((View) TopToast.this.getParent()).setVisibility(GONE);
+                                }
                             }
-                        }
-                    }).start();
-                }
-            }, time > 0 ? delay + time + DEFAULTDERATION : delay + DEFAULTTIME + DEFAULTDERATION);
+                        }).start();
+                    }
+                }, time > 0 ? delay + time + DEFAULTDERATION : delay + DEFAULTTIME + DEFAULTDERATION);
+            }
         }
     }
 
@@ -130,6 +140,7 @@ public class TopToast extends FrameLayout {
             TopToast topToast = (TopToast) LayoutInflater.from(context).inflate(R.layout.view_message, viewGroup, false);
             topToast.setText(message);
             topToast.setTime(time);
+            topToast.setVisibility(INVISIBLE);
             viewGroup.addView(topToast);
             return topToast;
         }
@@ -148,6 +159,7 @@ public class TopToast extends FrameLayout {
     }
 
     public TopToast setBackground(int color) {
+        if (color == 0) return this;
         if (intent != null) {
             intent.putExtra("backgroundColor", color);
         } else {
@@ -157,6 +169,7 @@ public class TopToast extends FrameLayout {
     }
 
     public TopToast setTextColor(int color) {
+        if (color == 0) return this;
         if (intent != null) {
             intent.putExtra("textColor", color);
         } else {
