@@ -1,4 +1,22 @@
-Top Material Design Top Toast Bar.
+Material Design Top/Bottom Toast Bar.
+
+<h2>How to implement</h2>
+
+Add it in your root build.gradle at the end of repositories:
+```gradle
+	allprojects {
+		repositories {
+			...
+			maven { url "https://jitpack.io" }
+		}
+	}
+```
+Step 2. Add the dependency
+```gradle
+    dependencies {
+	        compile 'com.github.SwiftyWang:ToastBar:release~1.1'
+	}
+```
 
 Support in the application or in the window.
 
