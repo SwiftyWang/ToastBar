@@ -44,3 +44,23 @@ without container view(attach as overlay)
         TopToast.make(context, "HELLO WORLD!!!!", 3000).show();
     }
 ```
+
+all public apis:
+
+```java
+setAnimationInterpolator(Interpolator enterInterpolator, Interpolator exitInterpolator);
+
+setPosition(Position position);
+
+setText(String text);
+
+setTime(long time);
+
+show(long delay);
+
+show();
+
+setBackground();
+
+setTextColor();
+```
