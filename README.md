@@ -15,7 +15,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 ```gradle
     dependencies {
-	        compile 'com.github.SwiftyWang:ToastBar:release~1.1'
+            compile 'com.github.SwiftyWang:TopToastBar:1.1.1'
 	}
 ```
 
