@@ -35,6 +35,6 @@ public class TopToast extends Toast {
      * @return
      */
     protected static Toast make(Context context, String message, long time) {
-        return make(Position.TOP, null, context, message, time);
+        return make(Position.TOP, context, message, time);
     }
 }

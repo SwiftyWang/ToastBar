@@ -35,6 +35,6 @@ public class BottomToast extends Toast {
      * @return
      */
     protected static Toast make(Context context, String message, long time) {
-        return make(Position.BOTTOM, null, context, message, time);
+        return make(Position.BOTTOM, context, message, time);
     }
 }
