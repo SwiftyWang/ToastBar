@@ -113,7 +113,8 @@ public class Toast extends FrameLayout {
                 @Override
                 public void run() {
                     Toast.this.setVisibility(VISIBLE);
-                    Toast.this.setY(position == Position.BOTTOM ? (getY() + getHeight()) : (getY() - getHeight()));
+                    if (position == Position.BOTTOM) Toast.this.setY((getY() + getHeight()));
+                    else Toast.this.setY((getY() - getHeight()));
                 }
             });
             postDelayed(new Runnable() {
