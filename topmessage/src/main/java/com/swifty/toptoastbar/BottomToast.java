@@ -22,7 +22,7 @@ public class BottomToast extends Toast {
      * @param time
      * @return
      */
-    protected static Toast make(ViewGroup viewGroup, Context context, String message, long time) {
+    public static Toast make(ViewGroup viewGroup, Context context, String message, long time) {
         return make(Position.BOTTOM, viewGroup, context, message, time);
     }
 
@@ -34,7 +34,7 @@ public class BottomToast extends Toast {
      * @param time
      * @return
      */
-    protected static Toast make(Context context, String message, long time) {
+    public static Toast make(Context context, String message, long time) {
         return make(Position.BOTTOM, context, message, time);
     }
 }
