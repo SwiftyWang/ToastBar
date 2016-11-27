@@ -1,6 +1,8 @@
 package com.swifty.toptoastbar;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.ViewGroup;
 
 /**
@@ -17,13 +19,12 @@ public class BottomToast extends Toast {
      * show the toast in the app views.
      *
      * @param viewGroup
-     * @param context
      * @param message
      * @param time
      * @return
      */
-    public static Toast make(ViewGroup viewGroup, Context context, String message, long time) {
-        return make(Position.BOTTOM, viewGroup, context, message, time);
+    public static Toast make(@NonNull ViewGroup viewGroup, String message, long time) {
+        return make(Position.BOTTOM, viewGroup, message, time);
     }
 
     /**
@@ -34,7 +35,7 @@ public class BottomToast extends Toast {
      * @param time
      * @return
      */
-    public static Toast make(Context context, String message, long time) {
+    public static Toast make(@NonNull Context context, String message, long time) {
         return make(Position.BOTTOM, context, message, time);
     }
 }
