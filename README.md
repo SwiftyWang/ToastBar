@@ -15,7 +15,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 ```gradle
     dependencies {
-            compile 'com.github.SwiftyWang:TopToastBar:1.1.2'
+            compile 'com.github.SwiftyWang:TopToastBar:1.1.3'
 	}
 ```
 
@@ -26,11 +26,11 @@ Toast style to use:
 with container view:
 ```java
     public void onBottomToast(View view) {
-        BottomToast.make((ViewGroup) findViewById(R.id.parent), context, "HELLO WORLD!!!!", 3000).show();
+        BottomToast.make((ViewGroup) findViewById(R.id.parent), "HELLO WORLD!!!!", 3000).show();
     }
 
     public void onTopToast(View view) {
-        TopToast.make((ViewGroup) findViewById(R.id.parent), context, "HELLO WORLD!!!!", 3000).show();
+        TopToast.make((ViewGroup) findViewById(R.id.parent), "HELLO WORLD!!!!", 3000).show();
     }
 ```
 
