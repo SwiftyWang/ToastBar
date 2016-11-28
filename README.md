@@ -1,5 +1,8 @@
 Material Design Top/Bottom Toast Bar.
 
+
+<h3>Min SDK >= 14</h3>
+
 <h2>How to implement</h2>
 ![screen-gif](./sample/2016_11_25_10_11_11_10_37_12.gif)
 
@@ -15,7 +18,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 ```gradle
     dependencies {
-            compile 'com.github.SwiftyWang:TopToastBar:1.1.3'
+            compile 'com.github.SwiftyWang:TopToastBar:1.1.4'
 	}
 ```
 
