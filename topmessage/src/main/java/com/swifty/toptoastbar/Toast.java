@@ -80,9 +80,9 @@ public class Toast extends FrameLayout {
      */
     protected static Toast make(Position position, @NonNull Context context, String message, long time) {
         Toast toast = new Toast(context);
-        toast.intent = new Intent(context, FloatWindowService.class);
+        intent = new Intent(context, FloatWindowService.class);
         intent.putExtra("message", message);
-        intent.putExtra("time", time > 0 ? time : toast.DEFAULTTIME);
+        intent.putExtra("time", time > 0 ? time : DEFAULTTIME);
         intent.putExtra("position", position);
         return toast;
     }
