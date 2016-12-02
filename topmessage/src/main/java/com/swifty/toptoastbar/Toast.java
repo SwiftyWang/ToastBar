@@ -30,13 +30,13 @@ import com.swifty.toptoastbar.UrlImage.URLImageParser;
 public class Toast extends FrameLayout {
 
     //dropdown duration
-    public static final long DEFAULTDERATION = 800;
+    public static final long DEFAULT_DURATION = 800;
     //show time
-    public static final long DEFAULTTIME = 300;
+    public static final long DEFAULT_TIME = 300;
     public static final int LENGTH_LONG = 5000;
     public static final int LENGTH_SHORT = 3000;
     private static Intent intent;
-    TextView message;
+    TextView messageTextView;
     //-1 means dont dismiss, only worked in the viewgroup
     long time;
     private Interpolator enterInterpolator;
@@ -90,7 +90,7 @@ public class Toast extends FrameLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        message = (TextView) findViewById(R.id.message_text);
+        messageTextView = (TextView) findViewById(R.id.message_text);
     }
 
     public Toast setAnimationInterpolator(Interpolator enterInterpolator, Interpolator exitInterpolator) {
@@ -122,6 +122,7 @@ public class Toast extends FrameLayout {
 
     public void setPosition(Position position) {
         this.position = position;
+
         if (position == Position.BOTTOM) {
             if (getLayoutParams() instanceof FrameLayout.LayoutParams) {
                 ((LayoutParams) getLayoutParams()).gravity = Gravity.BOTTOM;
@@ -140,10 +141,10 @@ public class Toast extends FrameLayout {
     }
 
     public void setText(String msg) {
-        if (message != null && !TextUtils.isEmpty(msg)) {
-            URLImageParser p = new URLImageParser(message, getContext());
+        if (messageTextView != null && !TextUtils.isEmpty(msg)) {
+            URLImageParser p = new URLImageParser(messageTextView, getContext());
             Spanned htmlSpan = Html.fromHtml(msg, p, null);
-            message.setText(htmlSpan);
+            messageTextView.setText(htmlSpan);
         }
     }
 
@@ -152,7 +153,7 @@ public class Toast extends FrameLayout {
         if (intent != null) {
             intent.putExtra("textColor", color);
         } else {
-            message.setTextColor(color);
+            messageTextView.setTextColor(color);
         }
         return this;
     }
@@ -176,13 +177,14 @@ public class Toast extends FrameLayout {
                 @Override
                 public void run() {
                     Toast.this.setVisibility(VISIBLE);
-                    Toast.this.setY(position == Position.BOTTOM ? (getY() + getHeight()) : (getY() - getHeight()));
+                    if (position == Position.BOTTOM) Toast.this.setY((getY() + getHeight()));
+                    else Toast.this.setY((getY() - getHeight()));
                 }
             });
             postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.this.animate().translationY(0).setDuration(DEFAULTDERATION).setInterpolator(enterInterpolator == null ? new BounceInterpolator() : enterInterpolator).setListener(new AnimatorListenerAdapter() {
+                    Toast.this.animate().translationY(0).setDuration(DEFAULT_DURATION).setInterpolator(enterInterpolator == null ? new BounceInterpolator() : enterInterpolator).setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationStart(Animator animation) {
                             super.onAnimationStart(animation);
@@ -198,7 +200,7 @@ public class Toast extends FrameLayout {
                 postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.this.animate().translationY(position == Position.BOTTOM ? getHeight() : -getHeight()).setDuration(DEFAULTDERATION).setInterpolator(exitInterpolator == null ? new AccelerateInterpolator() : exitInterpolator).setListener(new AnimatorListenerAdapter() {
+                        Toast.this.animate().translationY(position == Position.BOTTOM ? getHeight() : -getHeight()).setDuration(DEFAULT_DURATION).setInterpolator(exitInterpolator == null ? new AccelerateInterpolator() : exitInterpolator).setListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animation) {
                                 super.onAnimationEnd(animation);
@@ -212,7 +214,7 @@ public class Toast extends FrameLayout {
                             }
                         }).start();
                     }
-                }, time > 0 ? delay + time + DEFAULTDERATION : delay + DEFAULTTIME + DEFAULTDERATION);
+                }, time > 0 ? delay + time + DEFAULT_DURATION : delay + DEFAULT_TIME + DEFAULT_DURATION);
             }
         }
     }
