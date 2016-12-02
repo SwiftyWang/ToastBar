@@ -69,6 +69,6 @@ setTextColor();
 ```
 
 <h2>ToDo list:</h2>
-- [ ] add rignt in the toast.
+- [ ] add rignt button in the toast.
 - [ ] support customer layout.
 - [ ] add customer animation support.
