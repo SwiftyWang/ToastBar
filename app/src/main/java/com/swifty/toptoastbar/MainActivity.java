@@ -11,6 +11,10 @@ public class MainActivity extends AppCompatActivity {
         BottomToast.make((ViewGroup) findViewById(R.id.parent), "HELLO WORLD!!!!", 3000).show();
     }
 
+    public void onBottomWindowsToast(View view) {
+        BottomToast.make(this, "HELLO WORLD!!!!", 3000).show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,5 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onTopToast(View view) {
         TopToast.make((ViewGroup) findViewById(R.id.parent), "HELLO WORLD!!!!", 3000).show();
+    }
+
+    public void onTopWindowsToast(View view) {
+        TopToast.make(this, "HELLO WORLD!!!!", 3000).show();
     }
 }

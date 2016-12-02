@@ -82,7 +82,7 @@ public class Toast extends FrameLayout {
         Toast toast = new Toast(context);
         intent = new Intent(context, FloatWindowService.class);
         intent.putExtra("message", message);
-        intent.putExtra("time", time > 0 ? time : DEFAULTTIME);
+        intent.putExtra("time", time > 0 ? time : DEFAULT_TIME);
         intent.putExtra("position", position);
         return toast;
     }
@@ -90,7 +90,7 @@ public class Toast extends FrameLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        messageTextView = (TextView) findViewById(R.id.message_text);
+        messageTextView = (TextView) findViewById(R.id.message_textview);
     }
 
     public Toast setAnimationInterpolator(Interpolator enterInterpolator, Interpolator exitInterpolator) {

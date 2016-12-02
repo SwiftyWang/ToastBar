@@ -10,7 +10,7 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="100dp"
         android:onClick="onTopToast"
         android:text="top toast"/>
 
@@ -21,5 +21,23 @@
         android:layout_below="@id/button"
         android:layout_marginTop="10dp"
         android:onClick="onBottomToast"
+        android:text="bottom toast"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button2"
+        android:layout_marginTop="10dp"
+        android:onClick="onTopWindowsToast"
+        android:text="top toast"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button3"
+        android:layout_marginTop="10dp"
+        android:onClick="onBottomWindowsToast"
         android:text="bottom toast"/>
 </RelativeLayout>
