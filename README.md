@@ -4,7 +4,7 @@ Material Design Top/Bottom Toast Bar.
 <h3>Min SDK >= 14</h3>
 
 <h2>How to implement</h2>
-![Sample](./sample/2016_11_25_10_11_11_10_37_12.gif)
+![Sample](sample/2016_11_25_10_11_11_10_37_12.gif)
 
 Add it in your root build.gradle at the end of repositories:
 ```gradle
