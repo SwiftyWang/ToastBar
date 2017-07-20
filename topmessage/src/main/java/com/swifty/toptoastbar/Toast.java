@@ -4,6 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.text.Html;
 import android.text.Spanned;
@@ -23,6 +26,7 @@ import android.widget.TextView;
 
 import com.swifty.topstatusbar.R;
 import com.swifty.toptoastbar.UrlImage.URLImageParser;
+import com.swifty.toptoastbar.util.Utils;
 
 /**
  * Created by swifty on 22/11/2016.
@@ -42,12 +46,15 @@ public class Toast extends FrameLayout {
     private Interpolator enterInterpolator;
     private Interpolator exitInterpolator;
     private Position position;
+
     public Toast(Context context) {
         super(context);
     }
+
     public Toast(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+
     public Toast(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
@@ -80,6 +87,14 @@ public class Toast extends FrameLayout {
      */
     protected static Toast make(Position position, @NonNull Context context, String message, long time) {
         Toast toast = new Toast(context);
+        if (Build.VERSION.SDK_INT >= 23 && Utils.isMIUI8orLater()) {
+            if (!Settings.canDrawOverlays(context)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + context.getPackageName()));
+                context.startActivity(intent);
+                return toast;
+            }
+        }
         intent = new Intent(context, FloatWindowService.class);
         intent.putExtra("message", message);
         intent.putExtra("time", time > 0 ? time : DEFAULT_TIME);
