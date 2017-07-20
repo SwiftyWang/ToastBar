@@ -4,7 +4,8 @@ Material Design Top/Bottom Toast Bar.
 <h3>Min SDK >= 14</h3>
 
 <h2>How to implement</h2>
-![screen-gif](./sample/2016_11_25_10_11_11_10_37_12.gif)
+
+<img src='https://github.com/SwiftyWang/ToastBar/blob/master/sample/2016_11_25_10_11_11_10_37_12.gif' height='600'/>
 
 Add it in your root build.gradle at the end of repositories:
 ```gradle
@@ -67,3 +68,8 @@ setBackground();
 
 setTextColor();
 ```
+
+<h2>ToDo list:</h2>
+- [ ] add rignt button in the toast.
+- [ ] support customer layout.
+- [ ] add customer animation support.
