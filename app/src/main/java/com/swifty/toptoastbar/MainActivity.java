@@ -11,19 +11,19 @@ public class MainActivity extends AppCompatActivity {
     private Toast toast;
 
     public void onBottomToast(View view) {
-        BottomToast.make((ViewGroup) findViewById(R.id.parent), "HELLO WORLD!!!!", 3000).show();
+        BottomToast.make((ViewGroup) findViewById(R.id.parent), "HELLO WORLD!!!!", Toast.LENGTH_SHORT).show();
     }
 
     public void onBottomWindowToast(View view) {
-        BottomToast.make(this, "HELLO WORLD!!!!", 3000).show();
+        BottomToast.make(this, "HELLO WORLD!!!!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        windowToast = TopToast.make(this, "HELLO WORLD!!!!", 3000);
-        toast = TopToast.make((ViewGroup) findViewById(R.id.parent), "HELLO WORLD!!!!", 3000);
+        windowToast = TopToast.make(this, "HELLO WORLD!!!!", Toast.LENGTH_SHORT);
+        toast = TopToast.make((ViewGroup) findViewById(R.id.parent), "HELLO WORLD!!!!", Toast.LENGTH_SHORT);
     }
 
     public void onTopToast(View view) {

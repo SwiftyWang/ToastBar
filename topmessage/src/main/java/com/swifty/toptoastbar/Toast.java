@@ -50,7 +50,6 @@ public class Toast extends FrameLayout {
     Set<ToastListener> mToastListeners = new ArraySet<>();
     private Interpolator enterInterpolator;
     private Interpolator exitInterpolator;
-    private Intent mIntent;
     private ViewGroup mViewGroup;
     private Position position;
 
@@ -152,14 +151,26 @@ public class Toast extends FrameLayout {
         return this;
     }
 
-    public Toast addToastListener(ToastListener toastListener) {
+    /**
+     * current only for internal use
+     *
+     * @param toastListener
+     * @return this
+     */
+    Toast addToastListener(ToastListener toastListener) {
         if (toastListener != null) {
             mToastListeners.add(toastListener);
         }
         return this;
     }
 
-    public Toast removeToastListener(ToastListener toastListener) {
+    /**
+     * current only for internal use
+     *
+     * @param toastListener
+     * @return this
+     */
+    Toast removeToastListener(ToastListener toastListener) {
         if (toastListener != null) {
             mToastListeners.remove(toastListener);
         }
