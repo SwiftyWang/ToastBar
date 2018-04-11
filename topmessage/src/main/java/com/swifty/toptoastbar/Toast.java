@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.util.ArraySet;
 import android.text.Html;
 import android.text.Spanned;
@@ -27,6 +28,7 @@ import android.widget.TextView;
 
 import com.swifty.topstatusbar.R;
 import com.swifty.toptoastbar.UrlImage.URLImageParser;
+import com.swifty.toptoastbar.util.Utils;
 
 import java.util.Set;
 
@@ -102,11 +104,15 @@ public class Toast extends FrameLayout {
      */
     protected static Toast make(Position position, @NonNull Context context, String message, long time) {
         Toast toast = new Toast(context);
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (!Settings.canDrawOverlays(context)) {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                        Uri.parse("package:" + context.getPackageName()));
-                context.startActivity(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Utils.isMIUI8orLater()) {
+            boolean hasPermission = checkWindowPermission(context);
+            if (!hasPermission) {
+                return toast;
+            }
+        }
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+            boolean hasPermission = checkWindowPermission(context);
+            if (!hasPermission) {
                 return toast;
             }
         }
@@ -116,6 +122,17 @@ public class Toast extends FrameLayout {
         intent.putExtra("position", position);
         toast.setIntent(intent);
         return toast;
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private static boolean checkWindowPermission(Context context) {
+        if (!Settings.canDrawOverlays(context)) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + context.getPackageName()));
+            context.startActivity(intent);
+            return false;
+        }
+        return true;
     }
 
     @Override
