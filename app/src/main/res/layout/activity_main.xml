@@ -29,8 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/button2"
         android:layout_marginTop="10dp"
-        android:onClick="onTopWindowsToast"
-        android:text="top toast"/>
+        android:onClick="onTopWindowToast"
+        android:text="window top toast"/>
 
     <Button
         android:id="@+id/button4"
@@ -38,6 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/button3"
         android:layout_marginTop="10dp"
-        android:onClick="onBottomWindowsToast"
-        android:text="bottom toast"/>
+        android:onClick="onBottomWindowToast"
+        android:text="window bottom toast"/>
 </RelativeLayout>

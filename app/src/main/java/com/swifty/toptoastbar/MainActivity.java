@@ -7,11 +7,14 @@ import android.view.ViewGroup;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Toast windowToast;
+    private Toast toast;
+
     public void onBottomToast(View view) {
         BottomToast.make((ViewGroup) findViewById(R.id.parent), "HELLO WORLD!!!!", 3000).show();
     }
 
-    public void onBottomWindowsToast(View view) {
+    public void onBottomWindowToast(View view) {
         BottomToast.make(this, "HELLO WORLD!!!!", 3000).show();
     }
 
@@ -19,13 +22,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        windowToast = TopToast.make(this, "HELLO WORLD!!!!", 3000);
+        toast = TopToast.make((ViewGroup) findViewById(R.id.parent), "HELLO WORLD!!!!", 3000);
     }
 
     public void onTopToast(View view) {
-        TopToast.make((ViewGroup) findViewById(R.id.parent), "HELLO WORLD!!!!", 3000).show();
+        toast.show();
     }
 
-    public void onTopWindowsToast(View view) {
-        TopToast.make(this, "HELLO WORLD!!!!", 3000).show();
+    public void onTopWindowToast(View view) {
+        windowToast.show();
     }
 }
