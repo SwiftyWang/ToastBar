@@ -1,9 +1,9 @@
 package com.swifty.toptoastbar;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by swifty on 22/11/2016.

@@ -7,9 +7,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.util.ArraySet;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.collection.ArraySet;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
