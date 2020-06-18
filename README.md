@@ -1,8 +1,8 @@
 Material Design Top/Bottom Toast Bar.
 
 
-## Min SDK >= 14
-## Support Android 10
+### Min SDK >= 14
+### Support Android 10
 
 ### How to implement
 
