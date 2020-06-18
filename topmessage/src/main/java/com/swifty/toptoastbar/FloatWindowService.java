@@ -39,7 +39,7 @@ public class FloatWindowService extends Service {
             return START_NOT_STICKY;
         }
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
         } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
             layoutParams.type = WindowManager.LayoutParams.TYPE_PHONE;
