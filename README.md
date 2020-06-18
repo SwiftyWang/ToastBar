@@ -1,10 +1,10 @@
 Material Design Top/Bottom Toast Bar.
 
 
-<h3>Min SDK >= 14</h3>
-<h3>Support Android 7.1.1 and 8</h3>
+## Min SDK >= 14
+## Support Android 10
 
-<h2>How to implement</h2>
+### How to implement
 
 <img src='https://github.com/SwiftyWang/ToastBar/blob/master/sample/2016_11_25_10_11_11_10_37_12.gif' height='600'/>
 
@@ -20,7 +20,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 ```gradle
     dependencies {
-            compile 'com.github.SwiftyWang:TopToastBar:1.1.6'
+            implementation 'com.github.SwiftyWang:TopToastBar:1.1.7'
 	}
 ```
 
