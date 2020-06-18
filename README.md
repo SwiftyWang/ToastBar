@@ -70,7 +70,7 @@ setBackground();
 setTextColor();
 ```
 
-<h2>ToDo list:</h2>
-- [ ] add rignt button in the toast.  
-- [ ] support customer layout.  
-- [ ] add customer animation support.  
+###ToDo List
+- [ ] add rignt button in the toast.
+- [ ] support customer layout.
+- [ ] add customer animation support.
